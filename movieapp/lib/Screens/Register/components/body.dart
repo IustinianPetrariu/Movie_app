@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:movieapp/Screens/Register/register_screen.dart';
+import 'package:movieapp/Screens/Login/login_screen.dart';
+import 'package:movieapp/Screens/Register/components/background.dart';
 import 'package:movieapp/components/already_have_an_account.dart';
 import 'package:movieapp/components/rounded_button.dart';
 import 'package:movieapp/components/rounded_input_field.dart';
 import 'package:movieapp/components/rounded_password_field.dart';
-import 'package:movieapp/components/text_field_container.dart';
-import 'package:movieapp/constants.dart';
-
-import 'background.dart';
 
 class Body extends StatelessWidget {
   const Body({
@@ -24,39 +21,45 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'LOGIN',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              "REGISTER",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(height: size.height * 0.03),
             SvgPicture.asset(
-              'assets/icons/movie-player.svg',
+              "assets/icons/movie-player.svg",
               height: size.height * 0.25,
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
-              hintText: 'Your Email',
+              hintText: "Your Username",
+              onChanged: (value) {},
+            ),
+            RoundedInputField(
+              hintText: "Your Email",
               onChanged: (value) {},
             ),
             RoundedPasswordField(
               onChanged: (value) {},
             ),
             RoundedButton(
-              text: 'LOGIN',
+              text: "REGISTER",
               press: () {},
             ),
-            SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccount(
+              login: false,
               press: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return RegisterScreen();
+                      return LoginScreen();
                     },
                   ),
                 );
               },
-            ),
+            )
           ],
         ),
       ),

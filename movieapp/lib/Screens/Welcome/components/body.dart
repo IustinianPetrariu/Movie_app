@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:movieapp/Screens/Register/register_screen.dart';
 import 'package:movieapp/constants.dart';
 import '../../../components/rounded_button.dart';
 import '../../Login/login_screen.dart';
@@ -42,7 +43,16 @@ class Body extends StatelessWidget {
                 text: "REGISTER",
                 color: kPrimaryLightColor,
                 textColor: Colors.black,
-                press: () {},
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return RegisterScreen();
+                      },
+                    ),
+                  );
+                },
               ),
             ]),
       ),
