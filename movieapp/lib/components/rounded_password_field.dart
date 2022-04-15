@@ -3,9 +3,11 @@ import 'package:movieapp/components/text_field_container.dart';
 import 'package:movieapp/constants.dart';
 
 class RoundedPasswordField extends StatelessWidget {
+  final TextEditingController controller;
   final ValueChanged<String> onChanged;
   const RoundedPasswordField({
     Key? key,
+    required this.controller,
     required this.onChanged,
   }) : super(key: key);
 
@@ -13,6 +15,7 @@ class RoundedPasswordField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
+        controller: controller,
         obscureText: true,
         onChanged: onChanged,
         decoration: const InputDecoration(
