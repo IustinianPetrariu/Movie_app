@@ -36,7 +36,6 @@ class Body extends StatelessWidget {
         var json_decode = jsonDecode(response.body);
         var userId = json_decode[0]['id'];
         // print type of userId
-
         Navigator.push(
           context,
           MaterialPageRoute(
