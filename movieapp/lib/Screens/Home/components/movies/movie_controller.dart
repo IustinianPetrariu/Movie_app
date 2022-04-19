@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:movieapp/Screens/Home/components/movie.dart';
-import 'package:movieapp/Screens/Home/components/movie_details.dart';
+import 'package:movieapp/Screens/Home/components/movies/movie.dart';
+import 'package:movieapp/Screens/Home/components/movies/movie_details.dart';
 
 class MovieController extends StatelessWidget {
   final int userId;

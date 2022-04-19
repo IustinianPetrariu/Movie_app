@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:movieapp/Screens/Home/components/actor.dart';
-import 'package:movieapp/Screens/Home/components/actor_details.dart';
+import 'package:movieapp/Screens/Home/components/actors/actor.dart';
+import 'package:movieapp/Screens/Home/components/actors/actor_details.dart';
 
 class ActorController extends StatelessWidget {
   final int userId;

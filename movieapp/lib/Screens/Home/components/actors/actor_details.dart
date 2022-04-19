@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp/Screens/Home/components/actor.dart';
+import 'package:movieapp/Screens/Home/components/actors/actor.dart';
 import 'package:movieapp/components/rounded_button.dart';
 import 'package:movieapp/constants.dart';
 

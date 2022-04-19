@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:movieapp/Screens/Home/components/actor_controller.dart';
+import 'package:movieapp/Screens/Home/components/actors/actor_controller.dart';
 import 'package:movieapp/Screens/Home/components/background.dart';
-import 'package:movieapp/Screens/Home/components/movie_controller.dart';
+import 'package:movieapp/Screens/Home/components/movies/movie_controller.dart';
+import 'package:movieapp/Screens/Home/components/my_actors_controller.dart';
+import 'package:movieapp/Screens/Home/components/my_movies_controller.dart';
 import 'package:movieapp/components/rounded_button.dart';
 import 'package:movieapp/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -33,11 +35,27 @@ class Body extends StatelessWidget {
             SizedBox(height: size.height * 0.05),
             RoundedButton(
               text: 'My Movies',
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyMovieController(
+                            userId: userId,
+                          )),
+                );
+              },
             ),
             RoundedButton(
               text: 'My Actors',
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyActorController(
+                            userId: userId,
+                          )),
+                );
+              },
             ),
             SizedBox(height: size.height * 0.05),
             SvgPicture.asset(
