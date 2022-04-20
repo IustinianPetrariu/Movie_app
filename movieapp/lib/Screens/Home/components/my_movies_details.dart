@@ -5,10 +5,10 @@ import 'package:movieapp/components/rounded_button.dart';
 import 'package:movieapp/constants.dart';
 import 'package:http/http.dart' as http;
 
-class MovieDetails extends StatelessWidget {
+class MyMoviesDetails extends StatelessWidget {
   final Movie movie;
   final int userId;
-  const MovieDetails({
+  const MyMoviesDetails({
     Key? key,
     required this.movie,
     required this.userId,
@@ -72,58 +72,6 @@ class MovieDetails extends StatelessWidget {
       }
     }
 
-    Future handleDeleteFavoriteMovie(BuildContext context) async {
-      //  add favorite movie to the database
-      print("here");
-      var body = {
-        'user_id': userId,
-        'movie_id': movie.id,
-      };
-      var response = await http.delete(
-        Uri.http("localhost:8000", "/api/users-movies"),
-        body: jsonEncode(body),
-      );
-      if (response.statusCode == 200) {
-        Scaffold.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              'Movie removed from favorites successfully',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-            ),
-            // content:  Text('Email or password incorrect'),
-          ),
-        );
-      } else if (response.statusCode == 404) {
-        Scaffold.of(context).showSnackBar(const SnackBar(
-          content: Text(
-            'Movie not found in your list',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-            ),
-          ),
-          // content:  Text('Email or password incorrect'),
-        ));
-      } else {
-        Scaffold.of(context).showSnackBar(const SnackBar(
-          content: Text(
-            'Something went wrong',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-            ),
-          ),
-          // content:  Text('Email or password incorrect'),
-        ));
-      }
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: Text(movie.name),
@@ -157,17 +105,10 @@ class MovieDetails extends StatelessWidget {
                   child: Text("Producers: " + movie.producers),
                 ),
                 RoundedButton(
-                    text: "Add to favorite",
-                    press: () {
-                      handleAddFavoriteMovie(context);
-                    }),
-                RoundedButton(
                   text: 'Remove from favorite',
                   color: kPrimaryLightColor,
                   textColor: Colors.black,
-                  press: () {
-                    handleDeleteFavoriteMovie(context);
-                  },
+                  press: () {},
                 ),
               ],
             ),

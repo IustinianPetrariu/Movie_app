@@ -30,7 +30,7 @@ class MovieController extends StatelessWidget {
       List<Movie> movies = [];
       for (var result in jsonData) {
         Movie movie = Movie(result['name'], result['actors'], result['plot'],
-            result['year'], result['producers']);
+            result['year'], result['producers'], result['id']);
         movies.add(movie);
       }
       print(movies.length);
@@ -62,6 +62,7 @@ class MovieController extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => MovieDetails(
                                     movie: movies[index],
+                                    userId: userId,
                                   )),
                         );
                       },

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movieapp/Screens/Home/components/movies/movie.dart';
 import 'package:movieapp/Screens/Home/components/movies/movie_details.dart';
+import 'package:movieapp/Screens/Home/components/my_movies_details.dart';
 
 class MyMovieController extends StatelessWidget {
   final int userId;
@@ -22,7 +23,7 @@ class MyMovieController extends StatelessWidget {
       List<Movie> movies = [];
       for (var result in jsonData) {
         Movie movie = Movie(result['name'], result['actors'], result['plot'],
-            result['year'], result['producers']);
+            result['year'], result['producers'], result['id']);
         movies.add(movie);
       }
       print(movies.length);
@@ -52,8 +53,9 @@ class MyMovieController extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MovieDetails(
+                              builder: (context) => MyMoviesDetails(
                                     movie: movies[index],
+                                    userId: userId,
                                   )),
                         );
                       },
