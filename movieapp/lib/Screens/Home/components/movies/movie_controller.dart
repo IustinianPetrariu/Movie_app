@@ -33,7 +33,6 @@ class MovieController extends StatelessWidget {
             result['year'], result['producers'], result['id']);
         movies.add(movie);
       }
-      print(movies.length);
       return movies;
     }
 

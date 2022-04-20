@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movieapp/Screens/Home/components/actors/actor_controller.dart';
 import 'package:movieapp/Screens/Home/components/background.dart';
 import 'package:movieapp/Screens/Home/components/movies/movie_controller.dart';
-import 'package:movieapp/Screens/Home/components/my_actors_controller.dart';
+import 'package:movieapp/Screens/Home/components/my_actors/my_actors_controller.dart';
 import 'package:movieapp/Screens/Home/components/my_movies/my_movies_controller.dart';
 import 'package:movieapp/components/rounded_button.dart';
 import 'package:movieapp/constants.dart';
@@ -39,7 +39,7 @@ class Body extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => MyMovieController(
+                      builder: (context) => MyMoviesController(
                             userId: userId,
                           )),
                 );
@@ -51,7 +51,10 @@ class Body extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => MyActorController(
+                      settings: const RouteSettings(
+                        name: 'actors',
+                      ),
+                      builder: (context) => MyActorsController(
                             userId: userId,
                           )),
                 );

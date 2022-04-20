@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movieapp/Screens/Home/components/movies/movie.dart';
 import 'package:movieapp/Screens/Home/components/movies/movie_details.dart';
-import 'package:movieapp/Screens/Home/components/my_movies/my_movies_details.dart';
+import 'package:movieapp/Screens/Home/components/my_movies/my_movie_details.dart';
 
-class MyMovieController extends StatelessWidget {
+class MyMoviesController extends StatelessWidget {
   final int userId;
-  const MyMovieController({
+  const MyMoviesController({
     Key? key,
     required this.userId,
   }) : super(key: key);
@@ -26,7 +26,6 @@ class MyMovieController extends StatelessWidget {
             result['year'], result['producers'], result['movie_id']);
         movies.add(movie);
       }
-      print(movies.length);
       return movies;
     }
 
@@ -53,7 +52,7 @@ class MyMovieController extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MyMoviesDetails(
+                              builder: (context) => MyMovieDetails(
                                     movie: movies[index],
                                     userId: userId,
                                   )),

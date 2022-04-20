@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/Screens/Home/components/actors/actor.dart';
+import 'package:movieapp/Screens/Home/components/my_actors/my_actors_controller.dart';
 import 'package:movieapp/components/rounded_button.dart';
 import 'package:movieapp/constants.dart';
 import 'dart:convert';
@@ -18,7 +19,6 @@ class MyActorDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     Future handleDeleteFavoriteActor(BuildContext context) async {
       //  add favorite movie to the database
-      print("here");
       var body = {
         'user_id': userId,
         'actor_id': actor.id,
@@ -30,19 +30,35 @@ class MyActorDetails extends StatelessWidget {
         body: jsonEncode(body),
       );
       if (response.statusCode == 200) {
-        Scaffold.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              'Actor removed from favorites successfully',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
+        // Navigator.of(context).popUntil((ModalRoute.withName("actors")));
+        Navigator.pop(context);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MyActorsController(
+              userId: userId,
             ),
-            // content:  Text('Email or password incorrect'),
           ),
         );
+        // Navigator.of(context).pushAndRemoveUntil(
+        //     MaterialPageRoute(
+        //         builder: (context) => MyActorController(
+        //               userId: userId,
+        //             )),
+        //     (Route<dynamic> route) => false);
+        // Scaffold.of(context).showSnackBar(
+        //   const SnackBar(
+        //     content: Text(
+        //       'Actor removed from favorites successfully',
+        //       textAlign: TextAlign.center,
+        //       style: TextStyle(
+        //         color: Colors.white,
+        //         fontSize: 16,
+        //       ),
+        //     ),
+        //     // content:  Text('Email or password incorrect'),
+        //   ),
+        // );
       } else if (response.statusCode == 404) {
         Scaffold.of(context).showSnackBar(const SnackBar(
           content: Text(

@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movieapp/Screens/Home/components/actors/actor.dart';
 import 'package:movieapp/Screens/Home/components/actors/actor_details.dart';
-import 'package:movieapp/Screens/Home/components/my_actor_details.dart';
+import 'package:movieapp/Screens/Home/components/my_actors/my_actor_details.dart';
 
-class MyActorController extends StatelessWidget {
+class MyActorsController extends StatelessWidget {
   final int userId;
 
-  const MyActorController({
+  const MyActorsController({
     Key? key,
     required this.userId,
   }) : super(key: key);
@@ -26,7 +26,6 @@ class MyActorController extends StatelessWidget {
             result['age'], result['actor_id']);
         actors.add(actor);
       }
-      print(actors.length);
       return actors;
     }
 

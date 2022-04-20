@@ -74,7 +74,6 @@ class MovieDetails extends StatelessWidget {
 
     Future handleDeleteFavoriteMovie(BuildContext context) async {
       //  add favorite movie to the database
-      print("here");
       var body = {
         'user_id': userId,
         'movie_id': movie.id,
