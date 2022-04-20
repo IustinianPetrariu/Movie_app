@@ -1,41 +1,39 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:movieapp/Screens/Home/components/movies/movie.dart';
+import 'package:movieapp/Screens/Home/components/actors/actor.dart';
 import 'package:movieapp/components/rounded_button.dart';
 import 'package:movieapp/constants.dart';
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class MyMoviesDetails extends StatelessWidget {
-  final Movie movie;
+class MyActorDetails extends StatelessWidget {
+  final Actor actor;
   final int userId;
-  const MyMoviesDetails({
+  const MyActorDetails({
     Key? key,
-    required this.movie,
+    required this.actor,
     required this.userId,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Future handleAddFavoriteMovie(BuildContext context) async {
+    Future handleDeleteFavoriteActor(BuildContext context) async {
       //  add favorite movie to the database
+      print("here");
       var body = {
         'user_id': userId,
-        'movie_id': movie.id,
-        'name': movie.name,
-        'year': movie.year,
-        'plot': movie.plot,
-        'producers': movie.producers,
-        'actors': movie.actors,
+        'actor_id': actor.id,
       };
+      // avoid blocking by CORS
+
       var response = await http.post(
-        Uri.http("localhost:8000", "/api/users-movies"),
+        Uri.http("localhost:8000", "/api/user-actor"),
         body: jsonEncode(body),
       );
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         Scaffold.of(context).showSnackBar(
           const SnackBar(
             content: Text(
-              'Movie added to favorites successfully',
+              'Actor removed from favorites successfully',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
@@ -45,10 +43,10 @@ class MyMoviesDetails extends StatelessWidget {
             // content:  Text('Email or password incorrect'),
           ),
         );
-      } else if (response.statusCode == 409) {
+      } else if (response.statusCode == 404) {
         Scaffold.of(context).showSnackBar(const SnackBar(
           content: Text(
-            'Movie already exists',
+            'Actor not found in your list',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
@@ -74,7 +72,7 @@ class MyMoviesDetails extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(movie.name),
+        title: Text(actor.name),
       ),
       body: Builder(builder: (context) {
         return Padding(
@@ -84,31 +82,42 @@ class MyMoviesDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Icon(
-                  Icons.movie,
+                  Icons.person,
                   size: 100,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(movie.plot,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 17.0,
-                        fontStyle: FontStyle.italic,
-                      )),
+                  child: Text(
+                    actor.name,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 17.0,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("Actors: " + movie.actors),
+                  child: Text("Age: " + actor.age.toString()),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("Producers: " + movie.producers),
+                  child: Text(
+                    actor.description,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 17.0,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
                 ),
                 RoundedButton(
                   text: 'Remove from favorite',
                   color: kPrimaryLightColor,
                   textColor: Colors.black,
-                  press: () {},
+                  press: () {
+                    handleDeleteFavoriteActor(context);
+                  },
                 ),
               ],
             ),

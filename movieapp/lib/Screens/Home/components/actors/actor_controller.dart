@@ -20,8 +20,8 @@ class ActorController extends StatelessWidget {
       var jsonData = jsonDecode(response.body);
       List<Actor> actors = [];
       for (var result in jsonData) {
-        Actor actor =
-            Actor(result['name'], result['description'], result['age']);
+        Actor actor = Actor(
+            result['name'], result['description'], result['age'], result['id']);
         actors.add(actor);
       }
       print(actors.length);
@@ -54,6 +54,7 @@ class ActorController extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => ActorDetails(
                               actor: actors[index],
+                              userId: userId,
                             ),
                           ),
                         );

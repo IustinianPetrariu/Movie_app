@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movieapp/Screens/Home/components/actors/actor.dart';
 import 'package:movieapp/Screens/Home/components/actors/actor_details.dart';
+import 'package:movieapp/Screens/Home/components/my_actor_details.dart';
 
 class MyActorController extends StatelessWidget {
   final int userId;
@@ -21,8 +22,8 @@ class MyActorController extends StatelessWidget {
       var jsonData = jsonDecode(response.body);
       List<Actor> actors = [];
       for (var result in jsonData) {
-        Actor actor =
-            Actor(result['name'], result['description'], result['age']);
+        Actor actor = Actor(result['name'], result['description'],
+            result['age'], result['actor_id']);
         actors.add(actor);
       }
       print(actors.length);
@@ -53,8 +54,9 @@ class MyActorController extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ActorDetails(
+                            builder: (context) => MyActorDetails(
                               actor: actors[index],
+                              userId: userId,
                             ),
                           ),
                         );

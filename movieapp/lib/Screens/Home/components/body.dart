@@ -4,7 +4,7 @@ import 'package:movieapp/Screens/Home/components/actors/actor_controller.dart';
 import 'package:movieapp/Screens/Home/components/background.dart';
 import 'package:movieapp/Screens/Home/components/movies/movie_controller.dart';
 import 'package:movieapp/Screens/Home/components/my_actors_controller.dart';
-import 'package:movieapp/Screens/Home/components/my_movies_controller.dart';
+import 'package:movieapp/Screens/Home/components/my_movies/my_movies_controller.dart';
 import 'package:movieapp/components/rounded_button.dart';
 import 'package:movieapp/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
